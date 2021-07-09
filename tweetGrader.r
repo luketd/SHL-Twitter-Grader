@@ -31,7 +31,7 @@ token <- create_token(
 #of pages(15 per page)
 
 #End date(Sunday date + 1 day)
-endDate <- as.POSIXct("2021-03-08 5:00:00")
+endDate <- as.POSIXct("2021-07-05  5:00:00")
 
 #Thread link
 threadLink <- "https://simulationhockey.com/showthread.php?tid=112765"
@@ -74,6 +74,7 @@ getlist <- function(x) {
   #print(profile)
   getProfile <- profile %>% as.data.frame() %>%
      separate(1, into = c("handle", "extra"), sep = "[?]")
+  getProfile$handle <- gsub("https://www.twitter.com/", replacement = "", x = getProfile$handle)
   getProfile$handle <- gsub("http://www.twitter.com/", replacement = "", x = getProfile$handle)
   getProfile$handle <- gsub("https://twitter.com/", replacement = "", x = getProfile$handle)
   getProfile$handle <- gsub("www.twitter.com/", replacement = "", x = getProfile$handle)
@@ -178,30 +179,27 @@ if (Pages == 1){
   SHL <- purrr::map_df(1, getlist)
 } else {
   SHL <- purrr::map_df(1:Pages, getlist)
-  duplicated <- SHL[duplicated(SHL),]
-  duplicated <- SHL %>%
-    filter(duplicated$userName==SHL$userName)
-  if (is.null(duplicated$userName) == TRUE){
-    ##Gucci
-    print("Gucci")
-  } else {
-    print("DUPLICATION ALERT")
-    print(duplicated[1:2])
-  }
-  SHL <- SHL %>%
-    filter(SHL$payment>0)
+  duplicateOccur <- data.frame(table(SHL$getProfile.handle))
+  duplicateOccur[duplicateOccur$Freq > 1,]
+  UserOccur <- data.frame(table(SHL$userName))
+  UserOccur[UserOccur$Freq > 1,]
   
 }
+duplicateOccur <- data.frame(table(SHL$getProfile.handle))
+duplicateOccur[duplicateOccur$Freq > 1,]
+UserOccur <- data.frame(table(SHL$userName))
+UserOccur[UserOccur$Freq > 1,]
 
 
 
-write.csv(SHL,"C:\\Users\\Luke\\Desktop\\SHL\\Twitter.csv", row.names = FALSE)
+
+write.csv(SHL,"C:\\Users\\Luke\\Desktop\\SHL\\Twitter7-05csv", row.names = FALSE)
 
 
 
 
 
-getuser <- rtweet::get_timeline("robertfeltersn1", n = 150, check=FALSE, fast=TRUE)
+getuser <- rtweet::get_timeline("benjanss1", n = 150, check=FALSE, fast=TRUE)
 
 filtered <- getuser %>% 
   select(created_at, screen_name,hashtags, text ,replyToSN = reply_to_status_id) %>%
