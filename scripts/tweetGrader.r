@@ -7,7 +7,7 @@ suppressMessages(suppressWarnings(require(dplyr)))
 suppressMessages(suppressWarnings(require(purrr)))
 suppressMessages(suppressWarnings(require(dotenv)))
 options(dplyr.summarise.inform = FALSE)
-  
+
   
 #End date(Sunday date + 1 day)
 ##################################################################
