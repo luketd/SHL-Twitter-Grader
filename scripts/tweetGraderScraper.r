@@ -1,3 +1,4 @@
+
 {
 suppressMessages(suppressWarnings(require(rsconnect)))
 suppressMessages(suppressWarnings(require(tidyverse)))  
@@ -13,20 +14,21 @@ options(dplyr.summarise.inform = FALSE)
 ##################################################################
 #ENTER THE MONDAY DATE YOU WANT TO PULL IT FROM 
 #REMEMBER THAT ITS THE WEEK PRIOR MONDAY
-endDate <- as.POSIXct("2022-05-23  5:00:00")
+endDate <- as.POSIXct(paste0(Sys.Date()," 5:00:00"))
 
 
 #enter the path that you want to copy the files to
 #when you copy the path from file explorer to R it will turn out as
 # C:\Users\Luke\Desktop\SHL\Twitter
 # change the \ to \\ and it will work
-filePath <- "C:\\Users\\Luke\\Desktop\\SHL\\Twitter\\"
+filePath <- "Output\\"
+write.table(endDate, file = "Output\\Broken_Twitter_Accounts.txt", sep=',')
 ##################################################################
 
 ##----------------------------------------------------------------
 ##          Getting the tokens and base variables set up         -
 ##----------------------------------------------------------------
-load_dot_env()
+load_dot_env(file = "scripts/.env")
 
 api_key <- Sys.getenv("api_key")
 api_secret_key <- Sys.getenv("api_secret_key")
@@ -177,7 +179,10 @@ getlist <- function(x) {
         }
       },
       error=function(cond){
-        print(paste0("Error getting user: ", value) )
+        #print(paste0("Error getting user: ", value) )
+        write(paste0("Error getting user: ", value),
+              file = "Output\\Broken_Twitter_Accounts.txt",
+              append=TRUE)
         payTime <- 0 
       },
       finally={
