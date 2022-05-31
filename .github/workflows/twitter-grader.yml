@@ -8,8 +8,8 @@
 
 on:
   schedule:
-    - cron: "0 4 * * MON"
-
+    #- cron: "0 4 * * MON"
+     - cron: "6 4 * * *"
 name: SHLTwitter
 
 jobs:
