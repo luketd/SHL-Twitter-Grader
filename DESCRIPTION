@@ -1,0 +1,19 @@
+Package: TwitterGrader
+Type: Package
+Title: R functions to for NEW LR
+Version: 0.1.0
+Authors@R: person("Luke", "SHL" , email = "luketd99@gmail.com",  role = c("aut", "cre"))
+Description: Package to utalize webhooks in order to display history and player milestones in the SHL
+License: `use_mit_license()`, `use_gpl3_license()` 
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Imports:
+  devtools, discordr,tidyverse,rvest,dplyr,purrr,
+  stringr,dplyr,DBI, dbplyr, RSQLite, stringr, dotenv, rsconnect, rtweet
+Suggests:
+ testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Depends: 
+    R (>= 3.5.0)
+LazyData: true
