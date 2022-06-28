@@ -10,7 +10,7 @@ suppressMessages(suppressWarnings(require(googlesheets4)))
 suppressMessages(suppressWarnings(require(discordr)))
 options(dplyr.summarise.inform = FALSE)
 
-conn_obj <- create_discord_connection(webhook = "https://discord.com/api/webhooks/991361873784082432/K_GG_WfkpdjBlJaK9VJtuqVu7L9zyrXUMqMt1tD2cHmQLyxCU83N-HYEisDmfenOm6MH" , username = 'History Guy', set_default = TRUE)
+conn_obj <- create_discord_connection(webhook = "https://discord.com/api/webhooks/991361873784082432/K_GG_WfkpdjBlJaK9VJtuqVu7L9zyrXUMqMt1tD2cHmQLyxCU83N-HYEisDmfenOm6MH" , username = 'BANKER', set_default = TRUE)
   
 #End date(Sunday date + 1 day)
 ##################################################################
@@ -193,11 +193,14 @@ getlist <- function(x) {
 SHL <- purrr::map_df(1:Pages, getlist)
 write.csv(SHL, paste0(filePath, "Twitter", gsub(" 05:00:00", replacement = "", x = endDate),".csv" ), row.names = FALSE)
 
+gs4_deauth()
+
 write_sheet(SHL,
             ss="https://docs.google.com/spreadsheets/d/1WrvrErL0IAviglyX3FnXsnsoSoRtXB36v_gRbjPeqTo/edit?usp=sharing",
             sheet = "Original"
             )
-send_webhook_message("@178319208839380992 Twitter is in the bank thread bitch")
+
+send_webhook_message("<@178319208839380992> Twitter is in the bank thread bitch")
 }
 
 ##---------------------------------------------------------------------------
