@@ -13,7 +13,7 @@ options(dplyr.summarise.inform = FALSE)
 ##################################################################
 #ENTER THE MONDAY DATE YOU WANT TO PULL IT FROM 
 #REMEMBER THAT ITS THE WEEK PRIOR MONDAY
-endDate <- as.POSIXct(paste0(Sys.Date()," 5:00:00"))
+endDate <- as.POSIXct(paste0("2022-06-27 5:00:00"))
 
 
 #enter the path that you want to copy the files to
@@ -95,7 +95,6 @@ getlist <- function(x) {
   payInc <-1
   payTime <- 0 
   for (value in getProfile$handle){
-    #print(value)
     getuser <- rtweet::get_timeline(value, n = 150, check=FALSE, fast=TRUE)
     
     catchTwitter <- tryCatch(
@@ -108,20 +107,15 @@ getlist <- function(x) {
         twitter_name <- filtered$screen_name[1]
         if (dim(filtered)[1] == 0) {
           payTime <- 0
-          #payment[payInc] <- 0
-          #payInc <- payInc +1
-          #print("0")
+
         }else {
           filtered$created_at <- as.Date(filtered$created_at, format="%y-%mm-%dd")
           filtered["Payout"] <- 0
-          
           
           replyDate <- vector(mode = "character", length =1)
           tweetDate <- vector(mode = "character", length =1)
           reply <- 1
           tweet <- 1
-          
-          
           for (i in 1:length(filtered$created_at)){
             #Check to see if it is a reply
             if(is.na(filtered$replyToSN[i]) == TRUE) {
@@ -172,13 +166,9 @@ getlist <- function(x) {
           
           
           payTime <- temp$Payout
-          #payment[payInc] <- temp$Payout
-          #payInc <- payInc +1
-          #print(temp$Payout)
         }
       },
       error=function(cond){
-        #print(paste0("Error getting user: ", value) )
         write(paste0("Error getting user: ", value),
               file = "Output\\Broken_Twitter_Accounts.txt",
               append=TRUE)

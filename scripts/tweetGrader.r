@@ -13,7 +13,7 @@ options(dplyr.summarise.inform = FALSE)
 ##################################################################
 #ENTER THE MONDAY DATE YOU WANT TO PULL IT FROM 
 #REMEMBER THAT ITS THE WEEK PRIOR MONDAY
-endDate <- as.POSIXct("2022-05-23  5:00:00")
+endDate <- as.POSIXct("2022-06-20  5:00:00")
 
 
 #enter the path that you want to copy the files to
@@ -26,7 +26,7 @@ filePath <- "C:\\Users\\Luke\\Desktop\\SHL\\Twitter\\"
 ##----------------------------------------------------------------
 ##          Getting the tokens and base variables set up         -
 ##----------------------------------------------------------------
-load_dot_env()
+load_dot_env(file = "scripts/.env")
 
 api_key <- Sys.getenv("api_key")
 api_secret_key <- Sys.getenv("api_secret_key")
