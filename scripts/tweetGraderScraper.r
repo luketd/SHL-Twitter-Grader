@@ -197,7 +197,7 @@ write_sheet(SHL,
             ss="https://docs.google.com/spreadsheets/d/1WrvrErL0IAviglyX3FnXsnsoSoRtXB36v_gRbjPeqTo/edit?usp=sharing",
             sheet = "Original"
             )
-
+send_webhook_message("@178319208839380992 Twitter is in the bank thread bitch")
 }
 
 ##---------------------------------------------------------------------------
