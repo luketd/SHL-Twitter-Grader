@@ -10,7 +10,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports:
   devtools, discordr,tidyverse,rvest,dplyr,purrr,
-  stringr,dplyr,DBI, dbplyr, RSQLite, stringr, dotenv, rsconnect, rtweet, googlesheets4
+  stringr,dplyr,DBI, dbplyr, RSQLite, stringr, dotenv, rsconnect, rtweet, googlesheets4, discordr
 Suggests:
  testthat (>= 3.0.0)
 Config/testthat/edition: 3
