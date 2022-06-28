@@ -5,9 +5,12 @@ suppressMessages(suppressWarnings(require(rvest)))
 suppressMessages(suppressWarnings(require(rtweet)))
 suppressMessages(suppressWarnings(require(dplyr)))
 suppressMessages(suppressWarnings(require(purrr)))
-suppressMessages(suppressWarnings(require(dotenv)))
+#suppressMessages(suppressWarnings(require(dotenv)))
+suppressMessages(suppressWarnings(require(googlesheets4)))
+suppressMessages(suppressWarnings(require(discordr)))
 options(dplyr.summarise.inform = FALSE)
 
+conn_obj <- create_discord_connection(webhook = "https://discord.com/api/webhooks/991361873784082432/K_GG_WfkpdjBlJaK9VJtuqVu7L9zyrXUMqMt1tD2cHmQLyxCU83N-HYEisDmfenOm6MH" , username = 'History Guy', set_default = TRUE)
   
 #End date(Sunday date + 1 day)
 ##################################################################
@@ -27,12 +30,12 @@ write.table(endDate, file = "Output\\Broken_Twitter_Accounts.txt", sep=',')
 ##----------------------------------------------------------------
 ##          Getting the tokens and base variables set up         -
 ##----------------------------------------------------------------
-load_dot_env(file = "scripts/.env")
+#load_dot_env(file = "scripts/.env")
 
-api_key <- Sys.getenv("api_key")
-api_secret_key <- Sys.getenv("api_secret_key")
-access_token <- Sys.getenv("access_token")
-access_token_secret <- Sys.getenv("access_token_secret")
+api_key <- "qiuhpw6xWBxLvhkbqlofyoN4m"
+api_secret_key <- "hOE5NGbaU3uSStw7o08eaPjeaR4iZ4MKzMLiLDrX2SjsswnosK"
+access_token <- "3270729511-UngtR9d7pPPNGWq6ZietCiZ1DminaRpxEsHuPIc"
+access_token_secret <- "qlUU8WbSswh0IrFYDhO888iJGZGmU291WH6USb5pifDAW"
 
 ## authenticate via web browser
 token <- create_token(
@@ -189,6 +192,11 @@ getlist <- function(x) {
 }
 SHL <- purrr::map_df(1:Pages, getlist)
 write.csv(SHL, paste0(filePath, "Twitter", gsub(" 05:00:00", replacement = "", x = endDate),".csv" ), row.names = FALSE)
+
+write_sheet(SHL,
+            ss="https://docs.google.com/spreadsheets/d/1WrvrErL0IAviglyX3FnXsnsoSoRtXB36v_gRbjPeqTo/edit?usp=sharing",
+            sheet = "Original"
+            )
 
 }
 
