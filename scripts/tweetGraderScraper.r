@@ -204,7 +204,12 @@ write_sheet(SHL,
             sheet = "Original"
             )
 
-send_webhook_message("<@178319208839380992> Twitter is in the bank thread bitch")
+quotes <- read.csv("inspiration.csv", header=TRUE, sep =";", row.names=NULL)
+
+quote <- sample_n(quotes, 1)
+
+send_webhook_message("<@178319208839380992> Twitter is in the bank thread")
+send_webhook_message(paste0(quote$QUOTE, "\n -", quote$AUTHOR))
 }
 
 ##---------------------------------------------------------------------------
