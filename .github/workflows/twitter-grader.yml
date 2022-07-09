@@ -23,7 +23,7 @@ on:
         required: false
         type: boolean
   schedule:
-    - cron: "0 4 * * MON"
+    - cron: "0 10 * * MON"
     
 name: SHLTwitter
 
