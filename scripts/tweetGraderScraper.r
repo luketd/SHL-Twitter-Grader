@@ -195,7 +195,7 @@ write.csv(SHL, paste0(filePath, "Twitter", gsub(" 05:00:00", replacement = "", x
 
 options(gargle_oauth_cache = ".secrets",gargle_oauth_email="Lukedamato99@gmail.com")
 
-#gs4_auth(cache = ".secrets")
+gs4_auth(cache = ".secrets", email=TRUE)
 
 
 
