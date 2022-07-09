@@ -16,7 +16,7 @@ conn_obj <- create_discord_connection(webhook = "https://discord.com/api/webhook
 ##################################################################
 #ENTER THE MONDAY DATE YOU WANT TO PULL IT FROM 
 #REMEMBER THAT ITS THE WEEK PRIOR MONDAY
-endDate <- as.POSIXct(paste0("2022-06-27 5:00:00"))
+endDate <- as.POSIXct(paste0(Sys.Date(), "5:00:00"))
 
 
 #enter the path that you want to copy the files to
@@ -193,7 +193,11 @@ getlist <- function(x) {
 SHL <- purrr::map_df(1:Pages, getlist)
 write.csv(SHL, paste0(filePath, "Twitter", gsub(" 05:00:00", replacement = "", x = endDate),".csv" ), row.names = FALSE)
 
-gs4_deauth()
+options(gargle_oauth_cache = ".secrets",gargle_oauth_email="Lukedamato99@gmail.com")
+
+#gs4_auth(cache = ".secrets")
+
+
 
 write_sheet(SHL,
             ss="https://docs.google.com/spreadsheets/d/1WrvrErL0IAviglyX3FnXsnsoSoRtXB36v_gRbjPeqTo/edit?usp=sharing",
