@@ -76,6 +76,7 @@ jobs:
       - name: Run the twitter
         run: |
           source("scripts/tweetGraderScraper.r")
+          source("scripts/Antonio.R")
         shell: Rscript {0}
         
         
