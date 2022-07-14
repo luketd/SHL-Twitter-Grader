@@ -12,10 +12,10 @@ options(dplyr.summarise.inform = FALSE)
 conn_obj <- create_discord_connection(webhook = "https://discord.com/api/webhooks/989236566427832320/QeNAhpXULjACvgfeQzqFAhJA1rIg6oNFVVBq0BjTM5-lBBKVeC7Q-zq5B15kUNNaWwn4" , username = 'Is Antonio Funny', set_default = TRUE)
 
 
-api_key <- ${{ secrets.API_KEY }}
-api_secret_key <- ${{ secrets.API_SECRET_KEY }}
-access_token <-  ${{ secrets.ACCESS_TOKEN }}
-access_token_secret <- ${{ secrets.ACCESS_TOKEN_SECRET }}
+api_key <- Sys.getenv("API_KEY")
+api_secret_key <- Sys.getenv("API_SECRET_KEY")
+access_token <-  Sys.getenv("ACCESS_TOKEN")
+access_token_secret <- Sys.getenv("ACCESS_TOKEN_SECRET")
 
 ## authenticate via web browser
 token <- create_token(
