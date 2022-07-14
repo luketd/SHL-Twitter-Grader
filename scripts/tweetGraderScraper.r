@@ -32,10 +32,10 @@ write.table(endDate, file = "Output\\Broken_Twitter_Accounts.txt", sep=',')
 ##----------------------------------------------------------------
 #load_dot_env(file = "scripts/.env")
 
-api_key <- ${{ secrets.API_KEY }}
-api_secret_key <- ${{ secrets.API_SECRET_KEY }}
-access_token <-  ${{ secrets.ACCESS_TOKEN }}
-access_token_secret <- ${{ secrets.ACCESS_TOKEN_SECRET }}
+api_key <- Sys.getenv("API_KEY")
+api_secret_key <- Sys.getenv("API_SECRET_KEY")
+access_token <-  Sys.getenv("ACCESS_TOKEN")
+access_token_secret <- Sys.getenv("ACCESS_TOKEN_SECRET")
 
 ## authenticate via web browser
 token <- create_token(
