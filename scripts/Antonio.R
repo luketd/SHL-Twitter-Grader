@@ -46,8 +46,8 @@ nrow(freakyFiltered)
 topFreaky <- freaky[which.max(freaky$favorite_count),]
 
 
-send_webhook_message(paste0("For freakyFPS from the past week you achieved \n", sum(antonioFiltered$favorite_count), " Likes \n",
-                            sum(antonioFiltered$retweet_count), " Retweet(s) \n", "From ", nrow(antonioFiltered), " Tweets " ))
+send_webhook_message(paste0("For freakyFPS from the past week you achieved \n", sum(freakyFiltered$favorite_count), " Likes \n",
+                            sum(freakyFiltered$retweet_count), " Retweet(s) \n", "From ", nrow(freakyFiltered), " Tweets " ))
 send_webhook_message(paste0("Best Tweet\n", "https://twitter.com/freakyFPS/status/",topFreaky$status_id))
 
 winstonwhirloo2 <- rtweet::get_timeline("winstonwhirloo2", n = 150, check=FALSE, fast=TRUE)
