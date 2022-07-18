@@ -35,7 +35,7 @@ pastDate <- endDate - 622800
 #freakyFPS
 freaky <- rtweet::get_timeline("freakyFPS", n = 150, check=FALSE, fast=TRUE)
 
-freakyFiltered <- filtered <- antonio %>% 
+freakyFiltered <- filtered <- freaky %>% 
   select(created_at, is_retweet, screen_name,favorite_count,retweet_count,hashtags) %>%
   filter(created_at >= pastDate & is_retweet=="FALSE" )
 
