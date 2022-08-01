@@ -37,18 +37,11 @@ api_key <- "qiuhpw6xWBxLvhkbqlofyoN4m"
  access_token <- "3270729511-UngtR9d7pPPNGWq6ZietCiZ1DminaRpxEsHuPIc"
  access_token_secret <- "qlUU8WbSswh0IrFYDhO888iJGZGmU291WH6USb5pifDAW"
 
-#api_key <- Sys.getenv("API_KEY")
-#api_secret_key <- Sys.getenv("API_SECRET_KEY")
-#access_token <-  Sys.getenv("ACCESS_TOKEN")
-#access_token_secret <- Sys.getenv("ACCESS_TOKEN_SECRET")
+auth <- rtweet_bot("qiuhpw6xWBxLvhkbqlofyoN4m","hOE5NGbaU3uSStw7o08eaPjeaR4iZ4MKzMLiLDrX2SjsswnosK","3270729511-UngtR9d7pPPNGWq6ZietCiZ1DminaRpxEsHuPIc","qlUU8WbSswh0IrFYDhO888iJGZGmU291WH6USb5pifDAW")
+auth_as(auth)
+auth_save(auth, "twitterBot") 
 
-## authenticate via web browser
-token <- create_token(
-  app = "rstatsjournalismresearch",
-  consumer_key = api_key,
-  consumer_secret = api_secret_key,
-  access_token = access_token,
-  access_secret = access_token_secret)
+auth_get()
 
 #Thread link
 threadLink <- "https://simulationhockey.com/showthread.php?tid=112765"
@@ -98,20 +91,20 @@ getlist <- function(x) {
   getProfile$handle <- gsub("/with_replies", replacement = "", x = getProfile$handle)
   getProfile$handle <- gsub("/", replacement = "", x = getProfile$handle)
   
-  
+  #print(getProfile$handle)
   payment <- vector(mode ="integer", length=1)
   payInc <-1
   payTime <- 0 
   for (value in getProfile$handle){
-    getuser <- rtweet::get_timeline(value, n = 150, check=FALSE, fast=TRUE)
-    
     catchTwitter <- tryCatch(
       {
+        getuser <- rtweet::get_timeline(value, n = 150, check=FALSE, fast=TRUE)
         filtered <- getuser %>% 
-          select(created_at, screen_name,hashtags, text ,replyToSN = reply_to_status_id) %>%
-          filter(created_at >= pastDate & created_at <= endDate & grepl("shlhockey", tolower(hashtags)) == TRUE)
+          select(created_at,entities, text ,replyToSN = in_reply_to_status_id) %>%
+          filter(created_at >= pastDate & created_at <= endDate & grepl("shlhockey", tolower(entities)) == TRUE)
         
         filtered$created_at <- filtered$created_at - 18000
+        filtered$screen_name <- value
         twitter_name <- filtered$screen_name[1]
         if (dim(filtered)[1] == 0) {
           payTime <- 0
@@ -188,6 +181,7 @@ getlist <- function(x) {
       }
     )
   }
+  print(paste0(userName," ",getProfile$handle, " ", payment))
   data.frame(userName,getProfile$handle, payment)
   
   
@@ -227,3 +221,4 @@ duplicateOccur[duplicateOccur$Freq > 1,]
 UserOccur <- data.frame(table(SHL$userName))
 UserOccur[UserOccur$Freq > 1,]
 }
+
