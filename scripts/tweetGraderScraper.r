@@ -217,8 +217,8 @@ send_webhook_message(paste0(quote$QUOTE, "\n -", quote$AUTHOR))
 
 {
 duplicateOccur <- data.frame(table(SHL$getProfile.handle))
-duplicateOccur[duplicateOccur$Freq > 1,]
+print(duplicateOccur[duplicateOccur$Freq > 1,])
 UserOccur <- data.frame(table(SHL$userName))
-UserOccur[UserOccur$Freq > 1,]
+print(UserOccur[UserOccur$Freq > 1,])
 }
 
