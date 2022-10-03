@@ -192,24 +192,28 @@ getlist <- function(x) {
 SHL <- purrr::map_df(1:Pages, getlist)
 write.csv(SHL, paste0(filePath, "Twitter", gsub(" 05:00:00", replacement = "", x = endDate),".csv" ), row.names = FALSE)
 
-options(gargle_oauth_cache = ".secrets",gargle_oauth_email="Lukedamato99@gmail.com")
+#options(gargle_oauth_cache = ".secrets",gargle_oauth_email="Lukedamato99@gmail.com")
 
-gs4_auth(cache = ".secrets", email=TRUE)
+#gs4_auth(cache = ".secrets", email=TRUE)
 
 
 
-write_sheet(SHL,
-            ss="https://docs.google.com/spreadsheets/d/1WrvrErL0IAviglyX3FnXsnsoSoRtXB36v_gRbjPeqTo/edit?usp=sharing",
-            sheet = "Original"
-            )
+#write_sheet(SHL,
+#            ss="https://docs.google.com/spreadsheets/d/1WrvrErL0IAviglyX3FnXsnsoSoRtXB36v_gRbjPeqTo/edit?usp=sharing",
+#            sheet = "Original"
+#            )
 
 quotes <- read.csv("inspiration.csv", header=TRUE, sep =";", row.names=NULL)
+quotes <- quotes %>%
+  filter(GENRE == "funny")
 
 quote <- sample_n(quotes, 1)
 
 send_webhook_message("<@178319208839380992> Twitter is in the bank thread")
+send_webhook_file(paste0(filePath, "Twitter", gsub(" 05:00:00", replacement = "", x = endDate),".csv" ))
 send_webhook_message(paste0(quote$QUOTE, "\n -", quote$AUTHOR))
 }
+
 
 ##---------------------------------------------------------------------------
 ##        Checks for duplicates of twitter accounts and duplicate posts     -
