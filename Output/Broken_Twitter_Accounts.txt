@@ -1,8 +1,10 @@
 "x"
-"1",2022-10-10 05:00:00
+"1",2022-10-24 05:00:00
 Error getting user: charlesworthshl
 Error getting user: cobbensteinshl
 Error getting user: kelowna_knights
 Error getting user: edacsmailliw
 Error getting user: barrybenson_pbe
 Error getting user: dankingshl
+Error getting user: newffshl
+Error getting user: lucaspercyshl
