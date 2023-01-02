@@ -1,14 +1,18 @@
 "x"
-"1",2022-12-26 05:00:00
+"1",2023-01-02 05:00:00
 Error getting user: mat10smith
+Error getting user: the_strom_21
+Error getting user: wintertime21
 Error getting user: charlesworthshl
 Error getting user: johannsontaylor
 Error getting user: leavittzebulon
 Error getting user: cobbensteinshl
 Error getting user: kelowna_knights
+Error getting user: lucblouinshl
 Error getting user: graf47colphi
 Error getting user: edacsmailliw
 Error getting user: barrybenson_pbe
+Error getting user: highstickking
 Error getting user: cupnoodle4d
 Error getting user: dankingshl
 Error getting user: ajwllmsn230
