@@ -1,6 +1,7 @@
 suppressMessages(suppressWarnings(require(rsconnect)))
 suppressMessages(suppressWarnings(require(tidyverse)))  
 suppressMessages(suppressWarnings(require(dplyr)))
+suppressMessages(suppressWarnings(require(plyr)))
 suppressMessages(suppressWarnings(require(purrr)))
 suppressMessages(suppressWarnings(require(discordr)))
 suppressMessages(suppressWarnings(require(rvest)))
