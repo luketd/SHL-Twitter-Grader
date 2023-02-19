@@ -23,7 +23,7 @@ on:
         required: false
         type: boolean
   schedule:
-   #### - cron: "0 13 * * MON"
+   - cron: "0 13 * * MON"
     
 name: SHLTwitter
 
@@ -75,8 +75,7 @@ jobs:
         
       - name: Run the twitter
         run: |
-          source("scripts/tweetGraderScraper.r")
-          #source("scripts/Antonio.r")
+          source("scripts/Chirper.R")
         shell: Rscript {0}
         
         
