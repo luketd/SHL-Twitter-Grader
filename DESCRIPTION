@@ -1,4 +1,4 @@
-Package: TwitterGrader
+Package: ChirperGrader
 Type: Package
 Title: R functions to for NEW LR
 Version: 0.1.0
@@ -10,7 +10,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports:
   devtools, discordr,tidyverse,rvest,dplyr,purrr,
-  stringr,dplyr,DBI, dbplyr, RSQLite, stringr, dotenv, rsconnect, rtweet, googlesheets4, discordr
+  plyr,rsconnect,discordr
 Suggests:
  testthat (>= 3.0.0)
 Config/testthat/edition: 3
