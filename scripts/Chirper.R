@@ -30,8 +30,9 @@ data$datetime <- as.Date(data$datetime, format ="%m/%d/%y")
 
 #getting the past week of data
 today <- Sys.Date() - 7
+sunday <-Sys.Date() - 1
 data <- data %>%
-  filter(as.Date(datetime) >= as.Date(today) )
+  filter(as.Date(datetime) >= as.Date(today) &  as.Date(datetime) <= as.Date(sunday))
 
 #grading the past week for users
 uniqueUsers <- unique(data$username)
@@ -50,6 +51,9 @@ for (i in 1:length(uniqueUsers)){
   #putting the payouts into a data frame
   finalPayout[i,] <- c(uniqueUsers[i],payout)
 }
+
+finalPayout <- finalPayout[order(finalPayout$col2),]
+
 write.csv(finalPayout, paste0(filePath, "Chirper-", today ,".csv" ), row.names = FALSE)
 quotes <- read.csv("inspiration.csv", header=TRUE, sep =";", row.names=NULL)
 quotes <- quotes %>%
