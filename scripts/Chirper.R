@@ -18,7 +18,10 @@ res <- GET(url)
 data <- rawToChar(res$content)
 data <- str_remove(data, "</body>")
 data <- str_remove(data, "<head></head><body>")
+data <- gsub(" ", "", data)
+
 data <- gsub("\n", "", data)
+
 data <- fromJSON(data)
 data <- data
 data$datetime <- as.POSIXct(data$datetime, tz="EST", origin="1970-01-01") 
