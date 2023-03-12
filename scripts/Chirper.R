@@ -12,6 +12,9 @@ suppressMessages(suppressWarnings(require(jsonlite)))
 conn_obj <- create_discord_connection(webhook = "https://discord.com/api/webhooks/991361873784082432/K_GG_WfkpdjBlJaK9VJtuqVu7L9zyrXUMqMt1tD2cHmQLyxCU83N-HYEisDmfenOm6MH" , username = 'BANKER', set_default = TRUE)
 filePath <- "Output\\"
 
+chirperNum <- readRDS("chirperNum")
+
+
 url <- 'https://simulationhockey.com/chirperapi.php'
 #doing goofy shit to get jsonData into dataframe
 res <- GET(url)
@@ -59,7 +62,9 @@ quotes <- quotes %>%
   filter(GENRE == "funny")
 quote <- sample_n(quotes, 1)
 send_webhook_message("<@178319208839380992> Chirper is in the bank thread")
-send_webhook_file(paste0(filePath, "Chirper-", today ,".csv" ))
+send_webhook_file(paste0(filePath, "Chirper-", chirperNum, "-", today ,".csv" ))
 send_webhook_message(paste0(quote$QUOTE, "\n -", quote$AUTHOR))
 
+chirperNum <- chirperNum + 1
+saveRDS(chirperNum, "chirperNum")
 
