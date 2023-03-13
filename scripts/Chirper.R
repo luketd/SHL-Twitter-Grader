@@ -56,7 +56,7 @@ for (i in 1:length(uniqueUsers)){
 
 finalPayout <- finalPayout[order(finalPayout$col2),]
 
-write.csv(finalPayout, paste0(filePath, "Chirper-", today ,".csv" ), row.names = FALSE)
+write.csv(finalPayout, paste0(filePath, "Chirper-", chirperNum, "-", today ,".csv"), row.names = FALSE)
 quotes <- read.csv("inspiration.csv", header=TRUE, sep =";", row.names=NULL)
 quotes <- quotes %>%
   filter(GENRE == "funny")
