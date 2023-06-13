@@ -31,8 +31,8 @@ data$datetime <- as.Date(format(data$datetime, format ="%Y-%m-%d"))
 #done the goofy shit
 
 #getting the past week of data
-today  <- as.Date('2023-06-05')#Sys.Date() - 7
-sunday <- as.Date('2023-06-11')#Sys.Date() - 1
+today  <- Sys.Date() - 7
+sunday <- Sys.Date() - 1
 data <- data %>%
   filter(as.Date(datetime) >= as.Date(today) &  as.Date(datetime) <= as.Date(sunday))
 
