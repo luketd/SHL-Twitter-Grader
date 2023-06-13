@@ -27,12 +27,12 @@ data <- gsub("\n", "", data)
 
 data <- fromJSON(data)
 data$datetime <- as.POSIXct(data$datetime, tz="EST", origin="1970-01-01") 
-data$datetime <- as.Date(data$datetime, format ="%m/%d/%y")
+data$datetime <- as.Date(format(data$datetime, format ="%Y-%m-%d"))
 #done the goofy shit
 
 #getting the past week of data
-today  <- Sys.Date() - 7
-sunday <- Sys.Date() - 1
+today  <- as.Date('2023-06-05')#Sys.Date() - 7
+sunday <- as.Date('2023-06-11')#Sys.Date() - 1
 data <- data %>%
   filter(as.Date(datetime) >= as.Date(today) &  as.Date(datetime) <= as.Date(sunday))
 
