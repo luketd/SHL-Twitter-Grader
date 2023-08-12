@@ -56,7 +56,15 @@ for (i in 1:length(uniqueUsers)){
 
 finalPayout <- finalPayout[order(finalPayout$col2),]
 
-write.csv(finalPayout, paste0(filePath, "Chirper-", chirperNum, "-", today ,".csv"), row.names = FALSE)
+
+# Assuming finalPayout is your data frame and other variables are defined
+
+# Create a new data frame with the desired column names
+newData <- data.frame(username = finalPayout$col1, amount = finalPayout$col2)
+
+
+# Write the new data frame to a CSV file with specified headers
+write.csv(newData, paste0(filePath, "Chirper-", chirperNum, "-", today ,".csv"), row.names = FALSE)
 quotes <- read.csv("inspiration.csv", header=TRUE, sep =";", row.names=NULL)
 quotes <- quotes %>%
   filter(GENRE == "funny")
