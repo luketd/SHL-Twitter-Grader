@@ -24,6 +24,7 @@ data <- str_remove(data, "<head></head><body>")
 #data <- gsub(" ", "", data)
 
 data <- gsub("\n", "", data)
+data <- gsub("\\\\", "", data)
 
 data <- fromJSON(data)
 data$datetime <- as.POSIXct(data$datetime, tz="PST8PDT", origin="1970-01-01") 
