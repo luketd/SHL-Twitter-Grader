@@ -19,14 +19,24 @@ url <- 'https://simulationhockey.com/chirperapi.php'
 #doing goofy shit to get jsonData into dataframe
 res <- GET(url)
 data <- rawToChar(res$content)
-data <- str_remove(data, "</body>")
-data <- str_remove(data, "<head></head><body>")
-#data <- gsub(" ", "", data)
 
-data <- gsub("\n", "", data)
+# More robust cleanup
+data <- gsub("<head></head><body>|</body>", "", data)
+data <- gsub("\n", " ", data)
 data <- gsub("\\\\", "", data)
+# Clean up any potential invalid characters
+data <- gsub("[[:cntrl:]]", "", data)
+# Handle quotes more carefully
+data <- gsub('(?<!\\\\)"', '\\"', data, perl = TRUE)
 
-data <- fromJSON(data)
+# Add error handling for JSON parsing
+tryCatch({
+  data <- fromJSON(data)
+}, error = function(e) {
+  message("JSON parsing error: ", e$message)
+  # You might want to add logging here
+  return(NULL)
+})
 data$datetime <- as.POSIXct(data$datetime, tz="PST8PDT", origin="1970-01-01") 
 data$datetime <- as.Date(format(data$datetime, format ="%Y-%m-%d"))
 #done the goofy shit
