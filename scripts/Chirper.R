@@ -66,7 +66,7 @@ for (i in 1:length(uniqueUsers)){
 }
 
 finalPayout <- finalPayout[order(finalPayout$col2),]
-
+finalPayout[, 1] <- gsub("&quot;", "\"", finalPayout[, 1])
 
 # Assuming finalPayout is your data frame and other variables are defined
 
@@ -80,7 +80,7 @@ quotes <- read.csv("inspiration.csv", header=TRUE, sep =";", row.names=NULL)
 quotes <- quotes %>%
   filter(GENRE == "funny")
 quote <- sample_n(quotes, 1)
-send_webhook_message("<@178319208839380992> Chirper is in the bank thread")
+send_webhook_message("<@709843103040798750> Chirper is in the bank thread")
 send_webhook_file(paste0(filePath, "Chirper-", chirperNum, "-", today ,".csv" ))
 send_webhook_message(paste0(quote$QUOTE, "\n -", quote$AUTHOR))
 
